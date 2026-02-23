@@ -62,6 +62,9 @@ dataanalysis = "victor_dataanalysis.assistant:DataAnalysisAssistant"
 [tool.setuptools]
 packages = [
     "victor_dataanalysis",
+    "victor_dataanalysis.rl",
+    "victor_dataanalysis.teams",
+    "victor_dataanalysis.workflows",
 ]
 
 [tool.black]
