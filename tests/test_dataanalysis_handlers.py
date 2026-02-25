@@ -878,7 +878,7 @@ class TestNewHandlersInRegistry:
 
     def test_all_handlers_exported(self):
         """Test all handler classes are in __all__."""
-        from victor.dataanalysis import handlers
+        from victor_dataanalysis import handlers
 
         assert "PyCaretHandler" in handlers.__all__
         assert "AutoSklearnHandler" in handlers.__all__

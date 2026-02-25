@@ -387,7 +387,7 @@ class TestModuleExports:
 
     def test_capability_provider_exported_from_init(self):
         """Test DataAnalysisCapabilityProvider is exported from __init__."""
-        from victor.dataanalysis import DataAnalysisCapabilityProvider
+        from victor_dataanalysis import DataAnalysisCapabilityProvider
 
         assert DataAnalysisCapabilityProvider is not None
 
