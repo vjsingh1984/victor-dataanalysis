@@ -184,6 +184,17 @@ When presenting analysis:
 - Be transparent about limitations
 """
 
+    @classmethod
+    def get_capability_provider(cls):
+        """Get the capability provider for DataAnalysisAssistant.
+
+        Returns:
+            DataAnalysisCapabilityProvider instance
+        """
+        from victor_dataanalysis.capabilities import DataAnalysisCapabilityProvider
+
+        return DataAnalysisCapabilityProvider()
+
     # =========================================================================
     # New Framework Integrations (Workflows, RL, Teams)
     # =========================================================================
