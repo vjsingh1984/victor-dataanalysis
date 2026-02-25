@@ -25,3 +25,20 @@ __all__ = [
     "DataAnalysisToolDependencyProvider",
     "DataAnalysisCapabilityProvider",
 ]
+
+# Enhanced features with new coordinators
+from victor_dataanalysis.safety_enhanced import (
+    DataAnalysisSafetyRules,
+    EnhancedDataAnalysisSafetyExtension,
+)
+from victor_dataanalysis.conversation_enhanced import (
+    DataAnalysisContext,
+    EnhancedDataAnalysisConversationManager,
+)
+
+__all__.extend([
+    "DataAnalysisSafetyRules",
+    "EnhancedDataAnalysisSafetyExtension",
+    "DataAnalysisContext",
+    "EnhancedDataAnalysisConversationManager",
+])
