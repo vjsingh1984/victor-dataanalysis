@@ -267,6 +267,7 @@ DATA_ANALYSIS_OPTIONAL_TOOLS: Set[str] = _DeprecatedOptionalTools()  # type: ign
 
 __all__ = [
     "DataAnalysisToolDependencyProvider",
+    "get_provider",
     # Deprecated exports for backward compatibility
     "DATA_ANALYSIS_TOOL_DEPENDENCIES",
     "DATA_ANALYSIS_TOOL_TRANSITIONS",
@@ -275,3 +276,31 @@ __all__ = [
     "DATA_ANALYSIS_REQUIRED_TOOLS",
     "DATA_ANALYSIS_OPTIONAL_TOOLS",
 ]
+
+
+# =============================================================================
+# Entry Point Provider Factory
+# =============================================================================
+
+
+def get_provider() -> DataAnalysisToolDependencyProvider:
+    """Entry point provider factory for dataanalysis vertical.
+
+    This function is registered as an entry point in pyproject.toml:
+        [project.entry-points."victor.tool_dependencies"]
+        dataanalysis = "victor_dataanalysis.tool_dependencies:get_provider"
+
+    Returns:
+        A configured tool dependency provider for the dataanalysis vertical.
+
+    Example:
+        # Framework usage via entry points:
+        from importlib.metadata import entry_points
+        eps = entry_points(group="victor.tool_dependencies")
+        for ep in eps:
+            if ep.name == "dataanalysis":
+                provider_factory = ep.load()
+                provider = provider_factory()
+                deps = provider.get_dependencies()
+    """
+    return DataAnalysisToolDependencyProvider()

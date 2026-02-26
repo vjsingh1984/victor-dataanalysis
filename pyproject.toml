@@ -59,6 +59,12 @@ Issues = "https://github.com/vjsingh1984/victor-dataanalysis/issues"
 [project.entry-points."victor.verticals"]
 dataanalysis = "victor_dataanalysis.assistant:DataAnalysisAssistant"
 
+[project.entry-points."victor.tool_dependencies"]
+dataanalysis = "victor_dataanalysis.tool_dependencies:get_provider"
+
+[project.entry-points."victor.safety_rules"]
+dataanalysis = "victor_dataanalysis.safety:create_all_dataanalysis_safety_rules"
+
 [tool.setuptools]
 packages = [
     "victor_dataanalysis",
