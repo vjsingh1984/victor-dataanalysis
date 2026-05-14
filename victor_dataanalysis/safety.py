@@ -2,10 +2,11 @@
 
 from typing import Dict, List, Tuple
 
-from victor.framework.extensions import SafetyExtensionProtocol, SafetyPattern
+from victor_contracts.verticals import SafetyExtensionProtocol, SafetyPattern
+from victor_contracts.safety.framework import SafetyEnforcer, SafetyRule, SafetyLevel
 
 # Import PII detection from core safety module
-from victor.security.safety.pii import (
+from victor_contracts.safety import (
     PIIScanner,
     PIIType,
     detect_pii_columns as core_detect_pii_columns,
@@ -85,7 +86,7 @@ class DataAnalysisSafetyExtension(SafetyExtensionProtocol):
         Returns:
             Dict of pii_type -> regex_pattern for column names.
         """
-        from victor.security.safety.pii import PII_COLUMN_PATTERNS as CORE_PII_PATTERNS
+        from victor_contracts.safety import PII_COLUMN_PATTERNS as CORE_PII_PATTERNS
 
         # Return simplified dict format for backward compatibility
         return {pii_type.value: pattern for pii_type, pattern in CORE_PII_PATTERNS.items()}
@@ -175,7 +176,7 @@ with the framework-level SafetyEnforcer. This is the new recommended
 approach for safety enforcement in data analysis workflows.
 
 Example:
-    from victor.framework.config import SafetyEnforcer, SafetyConfig, SafetyLevel
+    from victor_contracts.safety.framework import SafetyEnforcer, SafetyConfig, SafetyLevel
     from victor_dataanalysis.safety import create_all_dataanalysis_safety_rules
 
     enforcer = SafetyEnforcer(config=SafetyConfig(level=SafetyLevel.HIGH))
@@ -186,8 +187,6 @@ Example:
     if not allowed:
         print(f"Blocked: {reason}")
 """
-
-from victor.framework.config import SafetyEnforcer, SafetyRule, SafetyLevel
 
 
 def create_dataanalysis_pii_safety_rules(
@@ -421,7 +420,7 @@ def create_all_dataanalysis_safety_rules(
         enforcer: SafetyEnforcer to register rules with
 
     Example:
-        from victor.framework.config import SafetyEnforcer, SafetyConfig, SafetyLevel
+        from victor_contracts.safety.framework import SafetyEnforcer, SafetyConfig, SafetyLevel
 
         enforcer = SafetyEnforcer(config=SafetyConfig(level=SafetyLevel.HIGH))
         create_all_dataanalysis_safety_rules(enforcer)
